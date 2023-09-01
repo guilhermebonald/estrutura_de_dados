@@ -9,7 +9,7 @@ class No:
 
 
 class ListaEncadeada:
-    # Ponteiro da cabeça, para o inicio da lista. Endereço de memoria do primeiro Nó.
+    # Inicializa a cabeça da lista como vazia, indicando que a lista está vazia no início.
     def __init__(self):
         self.cabeca = None
 

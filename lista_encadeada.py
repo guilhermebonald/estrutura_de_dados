@@ -5,7 +5,7 @@ class No:
 
     # Retorna a reprentação.
     def __repr__(self):
-        return "%s -> %s" % (self.valor, self.ponteiro)
+        return "%s, %s" % (self.valor, self.ponteiro)
 
 
 class ListaEncadeada:
@@ -22,25 +22,24 @@ class ListaEncadeada:
         atual = self.cabeca
         tamanho = 0
 
-        # verifica se a lista está vazia e retorna um 0
-        if self.cabeca == None:
-            return 0
-
-        # Verifica se a lista possui somente um elemento
-        if atual.conteudo != None and atual.proximo == None:
-            return 1
-
         # Percorre a lista até o último Nó ser vazio e adicionando +1 em cada loop.
-        while atual.proximo != None:
-            tamanho = tamanho + 1
-            atual = atual.proximo
+        while atual is not None:
+            tamanho += 1
+            atual = atual.ponteiro
 
         return tamanho
+
+    # Verifica se a lista está vazia.
+    def lista_vazia(self, lista):
+        if lista.cabeca == None:
+            return True
+        else:
+            return False
 
     # Inserção primeiro item da lista.
     def insere_no_inicio(self, lista, novo_valor):
         # 1) Cria um novo nó com o valor fornecido (novo_valor).
-        novo_no = No(novo_valor)
+        novo_no = No(novo_valor) # A classe Nó recebe um "valor" enquanto seu "ponteiro" por padrão já é None.
 
         # 2) Faz com que o ponteiro do novo nó aponte para o nó que era a cabeça da lista anteriormente.
         novo_no.ponteiro = lista.cabeca
@@ -48,25 +47,37 @@ class ListaEncadeada:
         # 3) Atualiza a cabeça da lista para que ela aponte para o novo nó, tornando-o o novo nó da cabeça da lista.
         lista.cabeca = novo_no
 
+    # inserção no último item da lista.
+    def insere_no_fim(self, lista, no_anterior, novo_dado):
+        assert no_anterior, "Nó anterior precisa existir na lista."
 
-def lista_vazia(lista):
-    if lista.cabeca == None:
-        return True
-    else:
-        return False
+        # Cria um novo nodo com o dado desejado.
+        novo_no = No(novo_dado)
+
+        # Faz o próximo do novo nodo ser o próximo do nodo anterior.
+        novo_no.ponteiro = no_anterior.ponteiro
+
+        # Faz com que o novo nodo seja o próximo do nodo anterior.
+        no_anterior.ponteiro = novo_no
+
 
 
 # Execução da Lista
 lista = ListaEncadeada()
 
-print(lista_vazia(lista))
+print(f"Lista vazia: {lista.lista_vazia(lista)}")
+print(f"Tamanho da Lista: {lista.tamanho_lista()}")
 
 lista.insere_no_inicio(lista, 5)
-print("Lista contém um único elemento:", lista)
-
+print("\nNovo elemento:", lista)
 lista.insere_no_inicio(lista, 10)
-print("Inserindo um novo elemento:", lista)
+print("Novo elemento:", lista)
+lista.insere_no_inicio(lista, 15)
+print("Novo elemento:", lista)
 
-print(lista.tamanho_lista())
+no_anterior = lista.cabeca
+lista.insere_no_fim(lista, no_anterior, 20)
+print(f"Novo elemento: {lista}")
 
-print(lista_vazia(lista))
+print(f"\nLista vazia: {lista.lista_vazia(lista)}")
+print(f"Tamanho da Lista: {lista.tamanho_lista()}")

@@ -48,7 +48,7 @@ class ListaEncadeada:
         lista.cabeca = novo_no
 
     # inserção no último item da lista.
-    def insere_no_fim(self, lista, no_anterior, novo_dado):
+    def insere_depois(self, lista, no_anterior, novo_dado):
         assert no_anterior, "Nó anterior precisa existir na lista."
 
         # Cria um novo nodo com o dado desejado.
@@ -76,7 +76,7 @@ lista.insere_no_inicio(lista, 15)
 print("Novo elemento:", lista)
 
 no_anterior = lista.cabeca
-lista.insere_no_fim(lista, no_anterior, 20)
+lista.insere_depois(lista, no_anterior, 20)
 print(f"Novo elemento: {lista}")
 
 print(f"\nLista vazia: {lista.lista_vazia(lista)}")

@@ -1,83 +1,97 @@
-class No:
-    def __init__(self, valor, ponteiro=None):
-        self.valor = valor
-        self.ponteiro = ponteiro
+# Definindo a classe Node
+class Node:
+    # O construtor recebe o valor e o próximo nó como parâmetros
+    def __init__(self, value, next=None):
+        self.value = value # Atribuindo o valor ao atributo value
+        self.next = next # Atribuindo o próximo nó ao atributo next
 
-    # Retorna a reprentação.
-    def __repr__(self):
-        return "%s, %s" % (self.valor, self.ponteiro)
+# Definindo a classe LinkedList
+class LinkedList:
+    # O construtor recebe a cabeça da lista como parâmetro
+    def __init__(self, head=None):
+        self.head = head # Atribuindo a cabeça ao atributo head
 
+    # Método para inserir um elemento no início da lista
+    def insert_at_head(self, value):
+        # Criando um novo nó com o valor dado e o atual head como próximo
+        new_node = Node(value, self.head)
+        # Atualizando o head para ser o novo nó
+        self.head = new_node
 
-class ListaEncadeada:
-    #  Inicializa a cabeça da lista como vazia, indicando que a lista está vazia no início.
-    def __init__(self):
-        self.cabeca = None
-
-    # Retorna a reprentação.
-    def __repr__(self):
-        return "[" + str(self.cabeca) + "]"
-
-    # Metodo que informa o tamanho da lista
-    def tamanho_lista(self):
-        atual = self.cabeca
-        tamanho = 0
-
-        # Percorre a lista até o último Nó ser vazio e adicionando +1 em cada loop.
-        while atual is not None:
-            tamanho += 1
-            atual = atual.ponteiro
-
-        return tamanho
-
-    # Verifica se a lista está vazia.
-    def lista_vazia(self, lista):
-        if lista.cabeca == None:
-            return True
+    # Método para inserir um elemento no final da lista
+    def insert_at_tail(self, value):
+        # Criando um novo nó com o valor dado e sem próximo
+        new_node = Node(value)
+        # Verificando se a lista está vazia
+        if self.head is None:
+            # Se sim, o head é o novo nó
+            self.head = new_node
         else:
-            return False
+            # Se não, percorrendo a lista até chegar no último nó
+            current = self.head
+            while current.next is not None:
+                current = current.next
+            # Fazendo o último nó apontar para o novo nó
+            current.next = new_node
 
-    # Inserção primeiro item da lista.
-    def insere_no_inicio(self, lista, novo_valor):
-        # 1) Cria um novo nó com o valor fornecido (novo_valor).
-        novo_no = No(novo_valor) # A classe Nó recebe um "valor" enquanto seu "ponteiro" por padrão já é None.
+    # Método para remover um elemento do início da lista
+    def remove_from_head(self):
+        # Verificando se a lista está vazia
+        if self.head is None:
+            # Se sim, não há nada para remover
+            return None
+        else:
+            # Se não, guardando o valor do head em uma variável
+            value = self.head.value
+            # Atualizando o head para ser o próximo nó
+            self.head = self.head.next
+            # Retornando o valor removido
+            return value
 
-        # 2) Faz com que o ponteiro do novo nó aponte para o nó que era a cabeça da lista anteriormente.
-        novo_no.ponteiro = lista.cabeca
+    # Método para remover um elemento do final da lista
+    def remove_from_tail(self):
+        # Verificando se a lista está vazia
+        if self.head is None:
+            # Se sim, não há nada para remover
+            return None
+        else:
+            # Se não, percorrendo a lista até chegar no penúltimo nó
+            previous = None
+            current = self.head
+            while current.next is not None:
+                previous = current
+                current = current.next
+            # Guardando o valor do último nó em uma variável
+            value = current.value
+            # Verificando se a lista tem apenas um elemento
+            if previous is None:
+                # Se sim, o head é None
+                self.head = None
+            else:
+                # Se não, fazendo o penúltimo nó apontar para None
+                previous.next = None
+            # Retornando o valor removido
+            return value
 
-        # 3) Atualiza a cabeça da lista para que ela aponte para o novo nó, tornando-o o novo nó da cabeça da lista.
-        lista.cabeca = novo_no
-
-    # inserção no último item da lista.
-    def insere_depois(self, lista, no_anterior, novo_dado):
-        assert no_anterior, "Nó anterior precisa existir na lista."
-
-        # Cria um novo nodo com o dado desejado.
-        novo_no = No(novo_dado)
-
-        # Faz o próximo do novo nodo ser o próximo do nodo anterior.
-        novo_no.ponteiro = no_anterior.ponteiro
-
-        # Faz com que o novo nodo seja o próximo do nodo anterior.
-        no_anterior.ponteiro = novo_no
+    # Método para imprimir os elementos da lista na tela
+    def print_list(self):
+        # Inicializando uma variável para armazenar a representação da lista
+        output = ""
+        # Percorrendo a lista e adicionando os valores à variável
+        current = self.head
+        while current is not None:
+            output += str(current.value) + " -> "
+            current = current.next
+        # Adicionando o símbolo de fim de lista
+        output += "None"
+        # Imprimindo a variável na tela
+        print(output)
 
 
+lista = LinkedList()
 
-# Execução da Lista
-lista = ListaEncadeada()
-
-print(f"Lista vazia: {lista.lista_vazia(lista)}")
-print(f"Tamanho da Lista: {lista.tamanho_lista()}")
-
-lista.insere_no_inicio(lista, 5)
-print("\nNovo elemento:", lista)
-lista.insere_no_inicio(lista, 10)
-print("Novo elemento:", lista)
-lista.insere_no_inicio(lista, 15)
-print("Novo elemento:", lista)
-
-no_anterior = lista.cabeca
-lista.insere_depois(lista, no_anterior, 20)
-print(f"Novo elemento: {lista}")
-
-print(f"\nLista vazia: {lista.lista_vazia(lista)}")
-print(f"Tamanho da Lista: {lista.tamanho_lista()}")
+lista.print_list()
+lista.insert_at_head(5)
+lista.insert_at_head(10)
+lista.insert_at_tail(15)
+lista.print_list()

@@ -11,14 +11,14 @@ class LinkedList:
     def __init__(self, head=None):
         self.head = head # Atribuindo a cabeça ao atributo head
 
-    # Método para inserir um elemento no início da lista
+    #* Método para inserir um elemento no início da lista
     def insert_at_head(self, value):
         # Criando um novo nó com o valor dado e o atual head como próximo
         new_node = Node(value, self.head)
         # Atualizando o head para ser o novo nó
         self.head = new_node
 
-    # Método para inserir um elemento no final da lista
+    #* Método para inserir um elemento no final da lista
     def insert_at_tail(self, value):
         # Criando um novo nó com o valor dado e sem próximo
         new_node = Node(value)
@@ -34,7 +34,7 @@ class LinkedList:
             # Fazendo o último nó apontar para o novo nó
             current.next = new_node
 
-    # Método para remover um elemento do início da lista
+    #* Método para remover um elemento do início da lista
     def remove_from_head(self):
         # Verificando se a lista está vazia
         if self.head is None:
@@ -48,7 +48,7 @@ class LinkedList:
             # Retornando o valor removido
             return value
 
-    # Método para remover um elemento do final da lista
+    #* Método para remover um elemento do final da lista
     def remove_from_tail(self):
         # Verificando se a lista está vazia
         if self.head is None:
@@ -73,7 +73,7 @@ class LinkedList:
             # Retornando o valor removido
             return value
 
-    # Método para imprimir os elementos da lista na tela
+    #* Método para imprimir os elementos da lista na tela
     def print_list(self):
         # Inicializando uma variável para armazenar a representação da lista
         output = ""

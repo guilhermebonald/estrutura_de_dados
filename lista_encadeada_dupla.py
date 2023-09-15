@@ -10,6 +10,9 @@ class DoublyLinkedList:
         self.head = None
         self.tail = None
 
+    #* Para ficar mais facil de entender o que está acontecendo na hora de adicionar dados, seja no head ou no tail,
+    #* é importante sempre ter em mente que os NÓS PRECISAM SEMPRE SE CONECTAR AO ANTERIOR E AO PROXIMO ATRAVEZ DO PONTEIRO.
+    #? Tendo isso em mente ficará mais facil de compreender o que está acontecendo na hora de adicionar dados no inicio ou fim.
     def add_at_head(self, data):
         new_node = Node(data)
         if self.head is None:

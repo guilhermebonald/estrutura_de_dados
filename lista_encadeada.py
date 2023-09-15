@@ -3,7 +3,7 @@ class Node:
     # O construtor recebe o valor e o próximo nó como parâmetros
     def __init__(self, value, next=None):
         self.value = value # Atribuindo o valor ao atributo value
-        self.pointer = next # Atribuindo o próximo nó ao atributo next
+        self.next = next # Atribuindo o próximo nó ao atributo next
 
 # Definindo a classe LinkedList
 class LinkedList:
@@ -29,10 +29,10 @@ class LinkedList:
         else:
             # Se não, percorrendo a lista até chegar no último nó
             current = self.head
-            while current.pointer is not None:
-                current = current.pointer
+            while current.next is not None:
+                current = current.next
             # Fazendo o último nó apontar para o novo nó
-            current.pointer = new_node
+            current.next = new_node
 
     #* Método para remover um elemento do início da lista
     def remove_from_head(self):
@@ -44,7 +44,7 @@ class LinkedList:
             # Se não, guardando o valor do head em uma variável
             value = self.head.value
             # Atualizando o head para ser o próximo nó
-            self.head = self.head.pointer
+            self.head = self.head.next
             # Retornando o valor removido
             return value
 
@@ -58,9 +58,9 @@ class LinkedList:
             # Se não, percorrendo a lista até chegar no penúltimo nó
             previous = None
             current = self.head
-            while current.pointer is not None:
+            while current.next is not None:
                 previous = current
-                current = current.pointer
+                current = current.next
             # Guardando o valor do último nó em uma variável
             value = current.value
             # Verificando se a lista tem apenas um elemento
@@ -69,7 +69,7 @@ class LinkedList:
                 self.head = None
             else:
                 # Se não, fazendo o penúltimo nó apontar para None
-                previous.pointer = None
+                previous.next = None
             # Retornando o valor removido
             return value
 
@@ -81,7 +81,7 @@ class LinkedList:
         current = self.head
         while current is not None:
             output += str(current.value) + " -> "
-            current = current.pointer
+            current = current.next
         # Adicionando o símbolo de fim de lista
         output += "None"
         # Imprimindo a variável na tela

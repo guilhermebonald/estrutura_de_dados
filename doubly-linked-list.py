@@ -41,12 +41,14 @@ class DoublyLinkedList:
         # 3 - Libere a memória do último item da lista. Isso pode ser feito usando o operador del.
         if self.head is None:
             print("Empty List")
+
         if self.head == self.tail:
             # Verificando se existe apenas um elemento na lista.
             del self.head  # deletando Nó da memoria
              # A atribuição de None a self.head e self.tail é uma medida de segurança adicional para garantir que essas variáveis não contenham referências inválidas após a remoção do último nó
             self.head = self.tail = None
             return
+        
         # deletando ultimo nó se passou pelas validações anteriores
         last = self.tail
         self.tail = self.tail.prev
@@ -54,7 +56,18 @@ class DoublyLinkedList:
         del last
 
     def delete_at_head(self):
-        pass
+        if self.head is None:
+            print("Empty List")
+
+        if self.head == self.tail:
+            self.head = self.tail = None
+            return
+        
+        next = self.head.next
+        next.prev = None
+        del self.head
+        self.head = next
+
 
     def display_forward(self):
         current = self.head
@@ -77,6 +90,7 @@ dll.add_at_head(2)
 dll.add_at_head(3)
 dll.add_at_tail(5)
 
+dll.display_forward()
 dll.delete_at_tail()
-dll.delete_at_tail()
+dll.delete_at_head()
 dll.display_forward()

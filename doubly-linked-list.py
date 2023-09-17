@@ -29,20 +29,37 @@ class DoublyLinkedList:
             self.head = new_node
             self.tail = new_node
         else:
-            self.tail.next = new_node
+            self.tail.next = new_node # none[data]none
             new_node.prev = self.tail
             self.tail = new_node
 
+    def delete_at_tail(self):
+        # 1 - Encontre o último item da lista. Isso pode ser feito iterando pela lista até encontrar um nó cujo ponteiro next seja None.
+        # 2 - Defina o ponteiro next do nó anterior ao último como None. Isso fará com que o último item da lista seja desconectado da lista.
+        # 3 - Libere a memória do último item da lista. Isso pode ser feito usando o operador del.
+        current = self.tail
+        if self.head is None:
+            print("Empty List")
+        else:
+            while current.next:
+                current = current.next
+            prev_node = current.prev
+            prev_node.next = None    
+            del current.data #! Problema ao excluir segundo item consecutivo 
+
+    def delete_at_head(self):
+        pass
+
     def display_forward(self):
         current = self.head
-        while current:
+        while current is not None:
             print(current.data, end=" <-> ")
             current = current.next
         print("None")
 
     def display_backward(self):
         current = self.tail
-        while current:
+        while current is not None:
             print(current.data, end=" <-> ")
             current = current.prev
         print("None")
@@ -54,5 +71,6 @@ dll.add_at_head(2)
 dll.add_at_head(3)
 dll.add_at_tail(5)
 
+dll.delete_at_tail()
+dll.delete_at_tail()
 dll.display_backward()
-dll.display_forward()

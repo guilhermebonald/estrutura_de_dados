@@ -25,7 +25,7 @@ class Queue:
 
     # remover da fila
     def pop(self):
-        """Remove o elemento do topo da pilha""" 
+        """Remove o elemento do inicio da pilha""" 
         if self._size > 0:
             elem = self.first.data
             self.first = self.first.next
@@ -73,4 +73,7 @@ queue.append("João")
 
 print(len(queue))
 
+print(queue)
+
+print(queue.pop())
 print(queue)

@@ -29,10 +29,9 @@ class Queue:
         if self._size > 0:
             elem = self.first.data
             self.first = self.first.next
-            # faltou tratar este caso no vídeo #
             if self.first is None:
                 self.last = None
-            ####################################
+            
             self._size = self._size - 1
             return elem
         

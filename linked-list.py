@@ -88,6 +88,7 @@ class LinkedList:
         print(output)
 
 
+
 lista = LinkedList()
 
 lista.print_list()

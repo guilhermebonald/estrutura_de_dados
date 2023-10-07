@@ -15,19 +15,20 @@ com todos os anteriores, o 5 e o 6. Após as comparações, o 3 fica na primeira
 posição, e assim por diante.
 """
 
+
 def insertion_sort(lista):
-    mudancas = 0
     # Começando do segundo elemento, pois sempre irá comparar aos numeros anteriores.
     for i in range(1, len(lista)):
         # 5
         escolhido = lista[i]
-        # Pegando o index do elemento anterior
+        # Index anterior
         j = i - 1
-        while j >= 0 and lista[j] > escolhido:
+        while j >= 0 and escolhido < lista[j]:
+            # Elemento atual recebe o valor do elemento anterior.
             lista[j + 1] = lista[j]
-            j = j - 1
-            mudancas += 1
+            j -= 1
         lista[j + 1] = escolhido
+    # Apenas para registrar o numero de mudanças feitas.
     return mudancas
 
 

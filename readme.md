@@ -1,3 +1,0 @@
-
-# ESTRUTURA DE DADOS
- 

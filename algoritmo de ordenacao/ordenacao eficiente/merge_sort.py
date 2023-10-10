@@ -25,4 +25,7 @@ def merge(lista, inicio, meio, fim):
             lista[k] = right[top_right]
             top_right = top_right + 1
 
-#
+
+lista1 = [12,3, 2, 24, 11, 76, 15, 12, 13, 56, 43, 23]
+mergesort(lista1)
+print(lista1)

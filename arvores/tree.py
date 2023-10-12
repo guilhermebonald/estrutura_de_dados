@@ -199,6 +199,7 @@ class Tree:
               atual = atual.dir
          return anterior
 
+    #caminhar
      def caminhar(self):
           print(" Exibindo em ordem: ",end="")
           self.inOrder(self.root)

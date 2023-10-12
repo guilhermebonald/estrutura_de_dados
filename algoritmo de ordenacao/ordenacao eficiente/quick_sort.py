@@ -20,3 +20,8 @@ def partition(lista, inicio, fim):
             i = i + 1
     lista[i], lista[fim] = lista[fim], lista[i]
     return i
+
+
+lista1 = ['123', '12345','1234', '1', '12',]
+quicksort(lista1)
+print(lista1)

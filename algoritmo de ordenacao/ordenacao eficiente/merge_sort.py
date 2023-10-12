@@ -26,6 +26,6 @@ def merge(lista, inicio, meio, fim):
             top_right = top_right + 1
 
 
-lista1 = [12,3, 2, 24, 11, 76, 15, 12, 13, 56, 43, 23]
+lista1 = [8, 7, 6, 5, 4, 3, 2, 1]
 mergesort(lista1)
 print(lista1)

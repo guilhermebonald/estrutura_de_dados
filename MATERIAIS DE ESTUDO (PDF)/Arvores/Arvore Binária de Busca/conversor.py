@@ -2,11 +2,13 @@
 Arvore Binaria >>> Arvore Binaria de Busca
 """
 
+
 class No:
     def __init__(self, item):
         self.item = item
         self.esq = None
         self.dir = None
+
 
 def inOrdem(raiz, inorder):
     if raiz is None:
@@ -15,10 +17,12 @@ def inOrdem(raiz, inorder):
     inorder.append(raiz.item)
     inOrdem(raiz.dir, inorder)
 
+
 def contaNo(raiz):
     if raiz is None:
         return 0
     return contaNo(raiz.esq) + contaNo(raiz.dir) + 1
+
 
 def arrayToBst(arr, raiz):
     if raiz is None:
@@ -28,6 +32,7 @@ def arrayToBst(arr, raiz):
     arr.pop(0)
     arrayToBst(arr, raiz.dir)
 
+
 def converte(raiz):
     if raiz is None:
         return
@@ -36,18 +41,19 @@ def converte(raiz):
     inOrdem(raiz, arr)
     arr.sort()
 
-def imprimir_arvore(raiz, espaco = 0):
+
+def imprimir_arvore(raiz, espaco=0):
     cont_espaco = 10
-    if (raiz == None):
+    if raiz == None:
         return
-    
+
     espaco += cont_espaco
 
     imprimir_arvore(raiz.dir, espaco)
 
-    print(end= " "*(espaco - cont_espaco))
+    print(end=" " * (espaco - cont_espaco))
     print(raiz.item)
-    
+
     imprimir_arvore(raiz.esq, espaco)
 
 

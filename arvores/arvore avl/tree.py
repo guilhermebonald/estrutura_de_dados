@@ -2,6 +2,7 @@
 Arvore AVL / Arvores Binárias de Busca Auto Balanceadas
 """
 
+
 # Definindo a classe para um nó da árvore AVL
 class Node:
     def __init__(self, key):
@@ -10,17 +11,20 @@ class Node:
         self.left = None
         self.right = None
 
+
 # Função para calcular a altura de um nó
 def height(node):
     if node is None:
         return 0
     return node.height
 
+
 # Função para calcular o fator de balanceamento de um nó
 def balance_factor(node):
     if node is None:
         return 0
     return height(node.left) - height(node.right)
+
 
 # Função para realizar a rotação simples à direita
 def right_rotate(y):
@@ -37,6 +41,7 @@ def right_rotate(y):
 
     return x
 
+
 # Função para realizar a rotação simples à esquerda
 def left_rotate(x):
     y = x.right
@@ -52,12 +57,14 @@ def left_rotate(x):
 
     return y
 
+
 # Função principal para inserir um nó na árvore AVL
 def insert(root, key):
     # Etapa 1: Inserção normal de um nó de árvore binária de busca
     if root is None:
         return Node(key)
-    
+
+    # if root is not none
     if key < root.key:
         root.left = insert(root.left, key)
     elif key > root.key:
@@ -93,12 +100,21 @@ def insert(root, key):
 
     return root
 
+
 # Função para percorrer a árvore AVL em ordem
 def inorder_traversal(root):
     if root is not None:
         inorder_traversal(root.left)
         print(root.key, end=" ")
         inorder_traversal(root.right)
+
+
+def print_avl_tree(root, level=0):
+    if root is not None:
+        print_avl_tree(root.right, level + 1)
+        print("    " * level + str(root.key))
+        print_avl_tree(root.left, level + 1)
+
 
 # Exemplo de uso
 root = None
@@ -111,3 +127,6 @@ for key in keys:
 # Imprimindo a árvore em ordem
 print("Árvore AVL em ordem:")
 inorder_traversal(root)
+
+print('\nArvore:')
+print_avl_tree(root)

@@ -64,7 +64,6 @@ def insert(root, key):
     if root is None:
         return Node(key)
 
-    # if root is not none
     if key < root.key:
         root.left = insert(root.left, key)
     elif key > root.key:
@@ -73,7 +72,14 @@ def insert(root, key):
         return root  # Chave já existe na árvore
 
     # Etapa 2: Atualiza a altura do nó atual
-    root.height = 1 + max(height(root.left), height(root.right))
+    root.height = 1 + max(
+        height(root.left), height(root.right)
+    )  # MAX pega o mair entre os valores.
+
+    """
+    APOS INSERIR UM NOVO VALOR, ELE VERIFICA SE FICOU DESBALANCEADA A ARVORE,
+    SE SIM PASSARÁ PELAS SEGUINTES ETAPAS PARA O BALANCEAMENTO.
+    """
 
     # Etapa 3: Obtém o fator de balanceamento do nó e verifica se a árvore ficou desbalanceada
     balance = balance_factor(root)
@@ -128,5 +134,5 @@ for key in keys:
 print("Árvore AVL em ordem:")
 inorder_traversal(root)
 
-print('\nArvore:')
+print("\nArvore:")
 print_avl_tree(root)
